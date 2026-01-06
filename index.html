@@ -601,8 +601,13 @@ slider("skills");
 slider("projects");
 
 /* TELEGRAM FORM */
-const BOT_TOKEN= "6220315725:AAHqOHIpets92GsaEKbVylppvalEesFm6fA";
-const CHAT_ID = "1995426040";
+const BOT_TOKEN = typeof process !== 'undefined' && process.env
+    ? process.env.BOT_TOKEN
+    : "6220315725:AAHqOHIpets92GsaEKbVylppvalEesFm6fA"; // барои локалӣ
+
+const CHAT_ID = typeof process !== 'undefined' && process.env
+    ? process.env.CHAT_ID
+    : "1995426040";
 
 function sendTelegram(e){
 e.preventDefault();
