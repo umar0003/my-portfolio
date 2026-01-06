@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<title>Umar | Universal Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ================= ROOT ================= */
+:root{
+--bg:#f8fafc;
+--text:#1e293b;
+--card:#ffffff;
+--primary:#6366f1;
+--secondary:#8b5cf6;
+--accent:#ec4899;
+--success:#10b981;
+--shadow:0 10px 25px rgba(99,102,241,.12);
+--gradient:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+body.dark{
+--bg:#0f172a;
+--text:#e2e8f0;
+--card:#1e293b;
+--primary:#818cf8;
+--secondary:#a78bfa;
+--accent:#f472b6;
+--success:#34d399;
+}
+/* ================= BASE ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+background:var(--bg);
+color:var(--text);
+transition:.35s;
+}
+/* ================= NAV ================= */
+nav{
+position:fixed;
+top:0;width:100%;
+background:var(--card);
+box-shadow:var(--shadow);
+z-index:1000;
+}
+.nav-inner{
+max-width:1200px;
+margin:auto;
+padding:14px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+.brand{
+font-size:20px;
+font-weight:800;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+.nav-actions{
+display:flex;
+align-items:center;
+gap:12px;
+}
+.nav-links{
+display:flex;
+gap:8px;
+}
+.nav-links a{
+text-decoration:none;
+color:var(--text);
+font-weight:600;
+padding:8px 16px;
+border-radius:10px;
+transition:.3s;
+}
+.nav-links a:hover{
+background:var(--gradient);
+color:#fff;
+transform:translateY(-2px);
+}
+.dark-btn, .menu-btn, .lang-btn{
+background:var(--gradient);
+color:#fff;
+border:none;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+.dark-btn, .lang-btn{
+width:40px;height:40px;
+border-radius:50%;
+font-size:18px;
+}
+.dark-btn:hover, .lang-btn:hover, .menu-btn:hover{
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+transform:scale(1.05);
+}
+.menu-btn{
+display:none;
+padding:8px 14px;
+border-radius:20px;
+}
+.lang-menu{
+display:none;
+position:absolute;
+top:60px;
+right:80px;
+background:var(--card);
+padding:12px;
+border-radius:12px;
+box-shadow:var(--shadow);
+gap:0;
+flex-direction:column;
+z-index:1001;
+min-width:140px;
+}
+.lang-menu a{
+display:block;
+padding:10px 16px;
+border:none;
+border-radius:6px;
+background:transparent;
+color:var(--text);
+font-weight:500;
+text-decoration:none;
+text-align:left;
+cursor:pointer;
+transition:.2s;
+}
+.lang-menu a:hover{
+background:rgba(99,102,241,0.1);
+color:var(--primary);
+transform:translateX(4px);
+}
+/* MOBILE NAV */
+@media(max-width:768px){
+.nav-links{
+display:none;
+position:absolute;
+right:20px;
+top:70px;
+flex-direction:column;
+background:var(--card);
+padding:14px;
+border-radius:14px;
+box-shadow:var(--shadow);
+}
+.menu-btn{display:block}
+.lang-menu{
+right:20px;
+}
+}
+@media(min-width:769px){
+.nav-actions{
+position:absolute;
+right:20px;
+}
+}
+/* ================= SECTIONS ================= */
+section{
+max-width:1200px;
+margin:auto;
+padding:60px 20px 40px;
+}
+.section-gap{padding-top:40px}
+/* ================= HERO ================= */
+.hero{
+text-align:center;
+padding-top:120px;
+}
+.hero h1{font-size:34px}
+.hero p{opacity:.8;margin-top:6px}
+/* ================= LAYOUT ================= */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:26px;
+align-items:center;
+}
+@media(max-width:768px){
+.grid{grid-template-columns:1fr}
+}
+/* ================= CARD ================= */
+.card{
+background:var(--card);
+padding:26px;
+border-radius:18px;
+box-shadow:var(--shadow);
+}
+/* ================= SLIDER ================= */
+.slider{
+position:relative;
+height:260px;
+border-radius:18px;
+overflow:hidden;
+background:var(--gradient);
+}
+.slider img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:.8s;
+}
+/* ================= FORM ================= */
+input,textarea{
+width:100%;
+padding:12px;
+margin:6px 0;
+border-radius:10px;
+border:1px solid #cbd5f5;
+background:transparent;
+color:var(--text);
+}
+button.send{
+width:100%;
+padding:14px;
+margin-top:8px;
+background:var(--gradient);
+color:white;
+font-size:16px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+}
+button.send:hover{
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+transform:translateY(-2px);
+}
+/* ================= TELEGRAM FLOAT ================= */
+.telegram-float{
+position:fixed;
+right:20px;
+bottom:20px;
+width:62px;height:62px;
+border-radius:50%;
+background:var(--gradient);
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+animation:pulse 1.8s infinite;
+z-index:9999;
+box-shadow:0 4px 20px rgba(99,102,241,.4);
+text-decoration:none;
+}
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(99,102,241,.7)}
+70%{box-shadow:0 0 0 22px rgba(99,102,241,0)}
+100%{box-shadow:0 0 0 0 rgba(99,102,241,0)}
+}
+/* ================= FOOTER ================= */
+footer{
+text-align:center;
+padding:22px;
+background:var(--card);
+font-size:14px;
+}
+/* CONTACT FORM CONTAINER */
+.contact-form{
+background:var(--card);
+padding:28px;
+border-radius:18px;
+box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+/* FORM */
+#contactForm{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+#contactForm input, #contactForm textarea{
+width:100%;
+padding:14px 16px;
+border-radius:12px;
+border:1px solid rgba(0,0,0,.1);
+background:var(--bg);
+color:var(--text);
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+.dark #contactForm input, .dark #contactForm textarea{
+border-color:rgba(255,255,255,.15);
+}
+#contactForm input:focus, #contactForm textarea:focus{
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(13,110,253,.15);
+}
+#contactForm textarea{
+min-height:120px;
+resize:none;
+}
+#contactForm .send{
+margin-top:10px;
+padding:14px;
+border:none;
+border-radius:14px;
+background:var(--gradient);
+color:#fff;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+#contactForm .send:hover{
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+transform:translateY(-2px);
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+<div class="brand">Umar</div>
+<div class="nav-actions">
+<button class="lang-btn" onclick="toggleLangMenu()">🌐</button>
+<div class="lang-menu" id="langMenu">
+<a href="#" onclick="setLanguage('tg'); return false;">Тоҷикӣ</a>
+<a href="#" onclick="setLanguage('en'); return false;">English</a>
+<a href="#" onclick="setLanguage('ru'); return false;">Русский</a>
+<a href="#" onclick="setLanguage('uz'); return false;">O'zbek</a>
+</div>
+<div class="nav-links" id="navLinks">
+<a href="#home">Асосӣ</a>
+<a href="#about">Дар бораи ман</a>
+<a href="#skills">Малакаҳо</a>
+<a href="#projects">Лоиҳаҳо</a>
+<a href="#contact">Тамос</a>
+</div>
+<button class="dark-btn" onclick="toggleDark()">🌙</button>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+<h1>Салом, ман Umar 👋</h1>
+<p>Web • Android • Backend Developer</p>
+<div class="slider home">
+<img src="images/photo-1517694712202-14dd9538aa97.jpeg">
+<img src="images/photo-1555066931-4365d14bab8c.jpeg">
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-gap">
+<div class="grid">
+<div class="card">
+<h2>Дар бораи ман</h2>
+<p>
+Ман барномасози касбӣ ҳастам, ки ба таҳия ва эҷоди сайтҳои замонавӣ, мобил-аппликатсияҳо ва системаҳои мураккаби рақамӣ машғул ҳастам. Дар фаъолияти худ аз технологияҳои муосир истифода бурда, лоиҳаҳоро бо риояи стандартҳои баланд месозам.
+</p>
+</div>
+<div class="slider about">
+<img src="images/pexels-divinetechygirl-1181675.jpg">
+<img src="images/photo-1542831371-d531d36971e6.jpeg">
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="grid">
+<div class="card">
+<h2>Малакаҳо</h2>
+<p>HTML • CSS • JavaScript • Laravel • Kotlin • MySQL • REST API</p>
+</div>
+<div class="slider skills">
+<img src="images/photo-1517433456452-f9633a875f6f.jpeg">
+<img src="images/photo-1498050108023-c5249f4df085.jpeg">
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="grid">
+<div class="card">
+<h2>Лоиҳаҳо</h2>
+<p>Online Store • Android App • Telegram Bot • Admin Panel</p>
+</div>
+<div class="slider projects">
+<img src="images/photo-1504639725590-34d0984388bd.jpeg">
+<img src="images/pexels-goumbik-574071.jpg">
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="grid">
+<div class="card">
+<p>Оё идея ё лоиҳае доред, ки мехоҳед онро ба воқеият табдил диҳед? Ман ба таҳияи сайтҳои муосир, мобил-аппликатсияҳо ва системаҳои боэътимод машғулам. Тафсилоти лоиҳаатонро нависед — мо якҷоя роҳи беҳтаринро меёбем ва маҳсулоти босифат ва зебо месозем.</p>
+<p style="margin-top:10px;font-weight:600;" id="responseTime">
+🕒 Ман одатан дар давоми 24 соат ҷавоб медиҳам.
+</p>
+</div>
+<!-- FORM -->
+<div class="card contact-form">
+<h2>Тамос ва ҳамкорӣ</h2>
+<form id="contactForm" onsubmit="sendTelegram(event)">
+<input id="name" placeholder="Номи шумо" required>
+<input id="email" type="email" placeholder="Email барои тамос" required>
+<input id="phone" placeholder="Рақами телефон" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+<textarea id="message" placeholder="Лоиҳа ё идеяи худро кӯтоҳ тавсиф кунед" required></textarea>
+<button class="send">Ирсоли дархост</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer>© 2026 Umar • Ҳифзи ҳуқуқҳо • Портфолиои замонавӣ</footer>
+
+<a class="telegram-float" href="https://t.me/umarodilov" target="_blank">✈️</a>
+
+<script>
+/* ================= LANG MENU ================= */
+const langMenu = document.getElementById("langMenu");
+const langBtn = document.querySelector(".lang-btn");
+
+function toggleLangMenu(){
+if(langMenu.style.display === "flex"){
+langMenu.style.display = "none";
+}else{
+langMenu.style.display = "flex";
+}
+}
+
+/* CLOSE LANG MENU WHEN CLICK OUTSIDE */
+document.addEventListener("click", function(e){
+if(
+langMenu.style.display === "flex" &&
+!langMenu.contains(e.target) &&
+!langBtn.contains(e.target)
+){
+langMenu.style.display = "none";
+}
+});
+
+langBtn.addEventListener("click", function(e){
+e.stopPropagation();
+});
+
+langMenu.addEventListener("click", function(e){
+e.stopPropagation();
+});
+
+/* ================= TRANSLATIONS ================= */
+const translations = {
+tg:{
+navHome:"Асосӣ",navAbout:"Дар бораи ман",navSkills:"Малакаҳо",navProjects:"Лоиҳаҳо",navContact:"Тамос",
+heroTitle:"Салом, ман Umar 👋",heroDesc:"Web • Android • Backend Developer",
+aboutTitle:"Дар бораи ман",aboutDesc:"Ман барномасози касбӣ ҳастам, ки ба таҳия ва эҷоди сайтҳои замонавӣ, мобил-аппликатсияҳо ва системаҳои мураккаби рақамӣ машғул ҳастам.",
+skillsTitle:"Малакаҳо",skillsDesc:"HTML • CSS • JavaScript • Laravel • Kotlin • MySQL • REST API",
+projectsTitle:"Лоиҳаҳо",projectsDesc:"Online Store • Android App • Telegram Bot • Admin Panel",
+contactTitle:"Тамос ва ҳамкорӣ",contactDesc:"Оё идея ё лоиҳае доред, ки мехоҳед онро ба воқеият табдил диҳед? Тафсилоти лоиҳаатонро нависед.",
+namePlaceholder:"Номи шумо",emailPlaceholder:"Email барои тамос",phonePlaceholder:"Рақами телефон",messagePlaceholder:"Лоиҳа ё идеяи худро кӯтоҳ тавсиф кунед",sendBtn:"Ирсоли дархост",
+footer:"© 2026 Umar • Ҳифзи ҳуқуқҳо • Портфолиои замонавӣ",
+responseTime:"🕒 Ман одатан дар давоми 24 соат ҷавоб медиҳам.",
+successMessage:"Паём фиристода шуд ✅"
+},
+en:{
+navHome:"Home",navAbout:"About Me",navSkills:"Skills",navProjects:"Projects",navContact:"Contact",
+heroTitle:"Hello, I'm Umar 👋",heroDesc:"Web • Android • Backend Developer",
+aboutTitle:"About Me",aboutDesc:"I am a professional developer specializing in creating modern websites, mobile applications, and complex digital systems.",
+skillsTitle:"Skills",skillsDesc:"HTML • CSS • JavaScript • Laravel • Kotlin • MySQL • REST API",
+projectsTitle:"Projects",projectsDesc:"Online Store • Android App • Telegram Bot • Admin Panel",
+contactTitle:"Contact & Collaboration",contactDesc:"Have an idea or project you want to bring to life? Share your project details.",
+namePlaceholder:"Your Name",emailPlaceholder:"Email for contact",phonePlaceholder:"Phone number",messagePlaceholder:"Describe your project or idea briefly",sendBtn:"Send Request",
+footer:"© 2026 Umar • All rights reserved • Modern Portfolio",
+responseTime:"🕒 I usually respond within 24 hours.",
+successMessage:"Message sent successfully ✅"
+},
+ru:{
+navHome:"Главная",navAbout:"Обо мне",navSkills:"Навыки",navProjects:"Проекты",navContact:"Контакт",
+heroTitle:"Привет, я Umar 👋",heroDesc:"Web • Android • Backend Developer",
+aboutTitle:"Обо мне",aboutDesc:"Я профессиональный разработчик, специализирующийся на создании современных сайтов, мобильных приложений и сложных цифровых систем.",
+skillsTitle:"Навыки",skillsDesc:"HTML • CSS • JavaScript • Laravel • Kotlin • MySQL • REST API",
+projectsTitle:"Проекты",projectsDesc:"Online Store • Android App • Telegram Bot • Admin Panel",
+contactTitle:"Контакты и сотрудничество",contactDesc:"Есть идея или проект, который хотите воплотить? Напишите детали вашего проекта.",
+namePlaceholder:"Ваше имя",emailPlaceholder:"Email для связи",phonePlaceholder:"Номер телефона",messagePlaceholder:"Опишите кратко проект или идею",sendBtn:"Отправить запрос",
+footer:"© 2026 Umar • Все права защищены • Современное портфолио",
+responseTime:"🕒 Обычно отвечаю в течение 24 часов.",
+successMessage:"Сообщение отправлено ✅"
+},
+uz:{
+navHome:"Asosiy",navAbout:"Men haqimda",navSkills:"Ko'nikmalar",navProjects:"Loyihalar",navContact:"Bog'lanish",
+heroTitle:"Salom, men Umar 👋",heroDesc:"Web • Android • Backend Developer",
+aboutTitle:"Men haqimda",aboutDesc:"Men zamonaviy saytlar, mobil ilovalar va murakkab raqamli tizimlarni yaratishga ixtisoslashgan professional dasturchiman.",
+skillsTitle:"Ko'nikmalar",skillsDesc:"HTML • CSS • JavaScript • Laravel • Kotlin • MySQL • REST API",
+projectsTitle:"Loyihalar",projectsDesc:"Online Store • Android App • Telegram Bot • Admin Panel",
+contactTitle:"Bog'lanish va hamkorlik",contactDesc:"Hayotga tatbiq qilmoqchi bo'lgan g'oya yoki loyihangiz bormi? Loyiha tafsilotlarini yozing.",
+namePlaceholder:"Ismingiz",emailPlaceholder:"Bog'lanish uchun email",phonePlaceholder:"Telefon raqami",messagePlaceholder:"Loyihangiz yoki g'oyangizni qisqacha tasvirlab bering",sendBtn:"So'rovni yuborish",
+footer:"© 2026 Umar • Barcha huquqlar himoyalangan • Zamonaviy portfolio",
+responseTime:"🕒 Odatda 24 soat ichida javob beraman.",
+successMessage:"Xabar yuborildi ✅"
+}
+};
+
+let currentLang = 'tg';
+
+function setLanguage(lang){
+currentLang = lang;
+document.querySelector('nav a[href="#home"]').textContent = translations[lang].navHome;
+document.querySelector('nav a[href="#about"]').textContent = translations[lang].navAbout;
+document.querySelector('nav a[href="#skills"]').textContent = translations[lang].navSkills;
+document.querySelector('nav a[href="#projects"]').textContent = translations[lang].navProjects;
+document.querySelector('nav a[href="#contact"]').textContent = translations[lang].navContact;
+document.querySelector('.hero h1').textContent = translations[lang].heroTitle;
+document.querySelector('.hero p').textContent = translations[lang].heroDesc;
+document.querySelector('#about .card h2').textContent = translations[lang].aboutTitle;
+document.querySelector('#about .card p').textContent = translations[lang].aboutDesc;
+document.querySelector('#skills .card h2').textContent = translations[lang].skillsTitle;
+document.querySelector('#skills .card p').textContent = translations[lang].skillsDesc;
+document.querySelector('#projects .card h2').textContent = translations[lang].projectsTitle;
+document.querySelector('#projects .card p').textContent = translations[lang].projectsDesc;
+document.querySelector('#contact .contact-form h2').textContent = translations[lang].contactTitle;
+document.querySelector('#contact .card p').textContent = translations[lang].contactDesc;
+document.getElementById('responseTime').textContent = translations[lang].responseTime;
+document.getElementById('name').placeholder = translations[lang].namePlaceholder;
+document.getElementById('email').placeholder = translations[lang].emailPlaceholder;
+document.getElementById('phone').placeholder = translations[lang].phonePlaceholder;
+document.getElementById('message').placeholder = translations[lang].messagePlaceholder;
+document.querySelector('#contactForm .send').textContent = translations[lang].sendBtn;
+document.querySelector('footer').textContent = translations[lang].footer;
+langMenu.style.display = "none";
+}
+</script>
+
+<script>
+const navLinks = document.getElementById("navLinks");
+const menuBtn = document.querySelector(".menu-btn");
+
+/* TOGGLE MENU */
+function toggleMenu(){
+if(navLinks.style.display === "flex"){
+navLinks.style.display = "none";
+}else{
+navLinks.style.display = "flex";
+}
+}
+
+/* CLICK OUTSIDE TO CLOSE */
+document.addEventListener("click", function(e){
+if(
+navLinks.style.display === "flex" &&
+!navLinks.contains(e.target) &&
+!menuBtn.contains(e.target)
+){
+navLinks.style.display = "none";
+}
+});
+
+/* PREVENT CLOSE WHEN CLICK INSIDE */
+menuBtn.addEventListener("click", function(e){
+e.stopPropagation();
+});
+
+navLinks.addEventListener("click", function(e){
+e.stopPropagation();
+});
+
+/* DARK MODE */
+function toggleDark(){
+document.body.classList.toggle("dark");
+localStorage.setItem("theme", document.body.classList.contains("dark")?"dark":"light");
+}
+
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+}
+
+/* SLIDER */
+function slider(cls){
+const imgs=document.querySelectorAll(`.${cls} img`);
+let i=0;
+imgs[0].style.opacity=1;
+setInterval(()=>{
+imgs[i].style.opacity=0;
+i=(i+1)%imgs.length;
+imgs[i].style.opacity=1;
+},3200);
+}
+
+slider("home");
+slider("about");
+slider("skills");
+slider("projects");
+
+/* TELEGRAM FORM */
+const BOT_TOKEN= "6220315725:AAHqOHIpets92GsaEKbVylppvalEesFm6fA";
+const CHAT_ID = "1995426040";
+
+function sendTelegram(e){
+e.preventDefault();
+const nameVal = document.getElementById("name").value;
+const emailVal = document.getElementById("email").value;
+const phoneVal = document.getElementById("phone").value;
+const messageVal = document.getElementById("message").value;
+
+const text = `📩 Дархости нав:
+👤 Ном: ${nameVal}
+📧 Email: ${emailVal}
+📞 Телефон: ${phoneVal}
+📝 Паём: ${messageVal}`;
+
+fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+chat_id: CHAT_ID,
+text: text
+})
+}).then(()=>{
+alert(translations[currentLang].successMessage);
+document.getElementById("contactForm").reset();
+});
+}
+</script>
+</body>
+</html>
